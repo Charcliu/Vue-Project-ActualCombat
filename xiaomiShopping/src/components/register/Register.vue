@@ -10,16 +10,21 @@
             <div class = "registerInfo">
                 <div>
                     <span>用户名：</span>
-                    <input type = "text" ng-model = "userName"/>
+                    <input type = "text" placeholder = "请输入用户名" v-model = "userName"/>
                 </div>
                 <div>
                     <span>密码：</span>
-                    <input type = "text" ng-model = "passWord"/>
+                    <input type = "password" placeholder = "请输入密码" v-model = "passWord"/>
                 </div>
             </div>
             <div>
-                <div class= "registerButton">
+                <div class= "registerButton" @click = "registerUser">
                     <span>注册</span>  
+                </div>
+            </div>
+            <div v-if = "errorTips.status">
+                <div class= "errorTips">
+                    <span>{{errorTips.text}}</span>
                 </div>
             </div>
         </div>
@@ -27,11 +32,40 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex'
 export default {
-    name: 'HelloWorld',
+    name: 'Register',
     data () {
         return {
-          msg: 'Welcome to Your Vue.js App'
+            userName : "",
+            passWord : "",
+            errorTips : {
+                status : false,
+                text : "用户名重复！"
+            }
+        }
+    },
+    computed : {
+        ...mapGetters([
+            'gettersUserInfo'
+        ])
+    },
+    methods : {
+        ...mapMutations([
+            'addUser' 
+        ]),
+        registerUser : function(){
+            // 判断用户名是否相同
+            this.errorTips.status = this.gettersUserInfo.some(function(item){
+                return item.userName == this.userName;
+            }, this);
+
+            if(!this.errorTips.status){
+                this.addUser({
+                    userName : this.userName,
+                    passWord : this.passWord
+                }) 
+            }
         }
     }
 }
@@ -95,5 +129,13 @@ export default {
         color: #fff;
         height: 42px;
         line-height: 42px;
+        cursor: pointer;
+    }
+    .errorTips{
+        width: 300px;
+        margin: auto;
+        text-align: center;
+        color: red;
+        font-size: 15px;
     }
 </style>
