@@ -22,26 +22,35 @@
                     <span>注册</span>  
                 </div>
             </div>
-            <div v-if = "errorTips.status">
-                <div class= "errorTips">
-                    <span>{{errorTips.text}}</span>
-                </div>
-            </div>
         </div>
+        <Notice :notice-info = "noticeInfo"></Notice>
     </div>
 </template>
 
 <script>
+
 import { mapMutations, mapGetters } from 'vuex'
+// 公共弹框组件
+import Notice from '../base/Notice'
+
 export default {
     name: 'Register',
     data () {
         return {
             userName : "",
             passWord : "",
-            errorTips : {
-                status : false,
-                text : "用户名重复！"
+            noticeInfo : {
+                show : false,
+                title : "",
+                content : "",
+                ok : {
+                    show : false,
+                    callBack : null
+                },
+                cancel : {
+                    show : false,
+                    callBack : null
+                }
             }
         }
     },
@@ -55,18 +64,52 @@ export default {
             'addUser' 
         ]),
         registerUser : function(){
-            // 判断用户名是否相同
-            this.errorTips.status = this.gettersUserInfo.some(function(item){
+
+            /*let errorType = {
+                status : false,
+                title : "Tips",
+                type : ""
+            }
+
+            this.userName == "" ? errorType = {
+                status : true,
+                type : "UserName Can not Be Empty."
+            } : errorType = {
+                status : false,
+                type : ""
+            };*/
+
+            let status = this.gettersUserInfo.some(function(item){
                 return item.userName == this.userName;
             }, this);
 
-            if(!this.errorTips.status){
+            if(!status){
                 this.addUser({
                     userName : this.userName,
                     passWord : this.passWord
                 }) 
+            }else{
+                let _this = this;
+                this.noticeInfo = {
+                    show : true,
+                    title : "Tips",
+                    content : "The UserName is Repeat!!!",
+                    ok : {
+                        show : true,
+                        callBack : function(){
+                            _this.noticeInfo.show = false;
+                        }
+                    },
+                    cancel : {
+                        show : false,
+                        callBack : null
+                    }
+                }
             }
         }
+    },
+    components : {
+        Notice
     }
 }
 </script>
