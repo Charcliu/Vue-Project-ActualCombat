@@ -22,6 +22,9 @@
                     <span>注册</span>  
                 </div>
             </div>
+            <div class = "login">
+                <span @click = "goLogin">立即登录</span>
+            </div>
         </div>
         <Notice :notice-info = "noticeInfo"></Notice>
     </div>
@@ -123,6 +126,9 @@ export default {
                     }
                 }
             }
+        },
+        goLogin : function(){
+            this.$router.push('login');
         }
     },
     components : {
@@ -197,5 +203,18 @@ export default {
         text-align: center;
         color: red;
         font-size: 15px;
+    }
+    .login{
+        margin: auto;
+        text-align: right;
+        color: #757575;
+        width: 304px !important;
+        margin-top: 5px !important;
+    }
+    .login > span{
+        cursor: pointer;
+    }
+    .login > span:hover{
+        color: #ef5b00;
     }
 </style>
