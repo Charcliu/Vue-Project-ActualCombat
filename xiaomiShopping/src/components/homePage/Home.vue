@@ -6,7 +6,9 @@
 </template>
 
 <script>
+    // 头部组件
     import Header from './header/Header'
+    // 轮播图组件
     import Swipper from '../base/Swipper'
     export default {
         name: 'Home',

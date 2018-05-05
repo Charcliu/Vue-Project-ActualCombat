@@ -4,3 +4,7 @@ export const addUser = (state, payload) => {
         passWord : payload.passWord
     })
 }
+
+export const setLoginUser = (state, payload) => {
+    state.currentUser = payload
+}

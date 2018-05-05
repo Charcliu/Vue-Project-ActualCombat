@@ -24,7 +24,7 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapMutations } from 'vuex'
 
     export default {
         name: 'Login',
@@ -40,6 +40,9 @@
             ])
         },
         methods : {
+            ...mapMutations([
+                'setLoginUser'
+            ]),
             goRegister : function(){
                 this.$router.push('register');
             },
@@ -56,6 +59,7 @@
                         type: 'error'
                     });
                 }else{
+                    this.setLoginUser(this.userName);
                     this.$router.push('home');
                 }
             }

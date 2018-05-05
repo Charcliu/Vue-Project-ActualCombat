@@ -1,20 +1,33 @@
 <template>
     <div class = "header">
         <div>
-            <span v-for = "(item,index) in headerMsg" class = "headerSpan">
+            <span v-for = "(item,index) in headerMsgLeft" class = "headerSpan">
                 {{item}}
-                <span v-if = "index != headerMsg.length - 1">|</span>
+                <span v-if = "index != headerMsgLeft.length - 1">|</span>
+            </span>
+            <span v-for = "(item,index) in headerMsgRight" class = "headerSpanRight">
+                {{item}}
             </span>
         </div>
     </div>
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
     export default {
         name: 'Header',
         data () {
             return {
-                headerMsg : ["小米商城","MIUI","IoT","云服务","水滴","金融","有品","Select Region"]
+                headerMsgLeft : ["小米商城","MIUI","IoT","云服务","水滴","金融","有品","Select Region"]
+            }
+        },
+        computed : {
+            ...mapGetters([
+                'gettersCurrentUser'
+            ]),
+            headerMsgRight : function(){
+                let arr = ["消息通知", "我的订单", "购物车"];
+                return [this.gettersCurrentUser, ...arr];
             }
         }
     }
