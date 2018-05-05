@@ -5,9 +5,13 @@
                 {{item}}
                 <span v-if = "index != headerMsgLeft.length - 1">|</span>
             </span>
-            <span v-for = "(item,index) in headerMsgRight" class = "headerSpanRight">
-                {{item}}
+            <span>
+                <span v-for = "(item,index) in headerMsgRight" class = "headerSpanRight">
+                    {{item}} 
+                    <span v-if = "index != headerMsgRight.length - 1">|</span>
+                </span> 
             </span>
+            
         </div>
     </div>
 </template>
@@ -47,6 +51,10 @@
         margin: auto;
     }
     .headerSpan span{
+        color: #424242;
+        margin: 0 .5em;
+    }
+    .headerSpanRight span{
         color: #424242;
         margin: 0 .5em;
     }

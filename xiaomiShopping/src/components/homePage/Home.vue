@@ -22,7 +22,7 @@
                     ],
                     startIndex : 0,
                     autoplay : true,
-                    interval : 3000
+                    interval : 6000
                 }
             }
         },
