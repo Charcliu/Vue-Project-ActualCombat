@@ -4,7 +4,7 @@
         <div class = "noticeDiv">
             <div class = "top">
                 <span>{{notice.title}}</span>
-                <span>x</span>
+                <!-- <span>x</span> -->
             </div>
             <div class = "content">
                 <span>{{notice.content}}</span>
@@ -48,11 +48,47 @@
     .noticeDiv{
         width: 500px;
         height: 250px;
-        background-color: red;
+        background-color: #ff6700;
         position: absolute;
         top: 50%;
         left: 50%;
         margin-left: -250px;
         margin-top: -125px;
+        color: white;
+        border-radius: 5px;
+    }
+    .noticeDiv > div:nth-child(1){
+        height: 50px;
+        line-height: 50px;
+    }
+    .noticeDiv > div:nth-child(2){
+        height: 150px;
+        line-height: 150px;
+        text-align: center;
+    }
+    .noticeDiv > div:nth-child(3){
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+    /* .top > span:nth-child(2){
+        float: right;
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 10px;
+        cursor: pointer;
+    } */
+    .top > span:nth-child(1){
+        margin-left: 10px;
+    }
+    .foot > span{
+        display: inline-block;
+        width: 70px;
+        height: 25px;
+        border: 1px solid white;
+        line-height: 25px;
+        border-radius: 5px;
+        cursor: pointer;
     }
 </style>

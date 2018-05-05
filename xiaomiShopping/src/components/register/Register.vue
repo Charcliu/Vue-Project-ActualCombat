@@ -24,8 +24,6 @@
             </div>
         </div>
         <Notice :notice-info = "noticeInfo"></Notice>
-        <el-radio v-model="radio" label="1">备选项</el-radio>
-        <el-radio v-model="radio" label="2">备选项</el-radio>
     </div>
 </template>
 
@@ -60,43 +58,59 @@ export default {
     computed : {
         ...mapGetters([
             'gettersUserInfo'
-        ])
+        ]),
+        getErrorMsg : function(){
+            let errorType = {
+                status : false,
+                title : "",
+                type : ""
+            };
+
+            if(this.userName != ""){
+                let status = this.gettersUserInfo.some(function(item){
+                    return item.userName == this.userName;
+                }, this);
+
+                if(status){
+                    errorType = {
+                        status : true,
+                        title : "Tips",
+                        type : "UserName Can not Repeat."
+                    }
+                }
+            }else{
+                errorType = {
+                    status : true,
+                    title : "Tips",
+                    type : "UserName Can not Be Empty."
+                }
+            }
+            return errorType;
+        }
     },
     methods : {
         ...mapMutations([
             'addUser' 
         ]),
         registerUser : function(){
+            let errorType = this.getErrorMsg;
 
-            /*let errorType = {
-                status : false,
-                title : "Tips",
-                type : ""
-            }
-
-            this.userName == "" ? errorType = {
-                status : true,
-                type : "UserName Can not Be Empty."
-            } : errorType = {
-                status : false,
-                type : ""
-            };*/
-
-            let status = this.gettersUserInfo.some(function(item){
-                return item.userName == this.userName;
-            }, this);
-
-            if(!status){
+            if(!errorType.status){
                 this.addUser({
                     userName : this.userName,
                     passWord : this.passWord
                 }) 
+                // elementUI 提示组件
+                this.$message({
+                    message: '恭喜你，注册成功！',
+                    type: 'success'
+                });
             }else{
                 let _this = this;
                 this.noticeInfo = {
-                    show : true,
-                    title : "Tips",
-                    content : "The UserName is Repeat!!!",
+                    show : errorType.status,
+                    title : errorType.title,
+                    content : errorType.type,
                     ok : {
                         show : true,
                         callBack : function(){
