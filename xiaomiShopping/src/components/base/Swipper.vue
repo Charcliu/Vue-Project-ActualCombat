@@ -90,4 +90,8 @@
         margin: auto;
         position: relative;
     }
+    img{
+        width: 1226px;
+        height: 460px;
+    }
 </style>

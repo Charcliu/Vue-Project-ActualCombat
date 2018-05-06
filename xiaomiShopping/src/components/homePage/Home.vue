@@ -18,6 +18,7 @@
             return {
                 bgImg : {
                     url : [
+                        require("../../assets/xmad.jpg"),
                         require("../../assets/card2.jpg"),
                         require("../../assets/card3.jpg"),
                         require("../../assets/card4.jpg")

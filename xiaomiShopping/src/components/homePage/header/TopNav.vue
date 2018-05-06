@@ -60,7 +60,7 @@
                 clearTimeout(this.timeoutId);
                 this.timeoutId = setTimeout(function(){
                     !_this.count ? _this.showDetail = false : ""
-                }, 3000);
+                }, 500);
             }
         }
     }
