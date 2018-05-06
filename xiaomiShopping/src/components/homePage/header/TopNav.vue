@@ -2,9 +2,9 @@
     <div class = "topNav">
         <span></span>
         <div class = "simpleNav">
-            <span v-for = "item in topNav" @mouseover="getName(item)">{{item}}</span>
+            <span v-for = "item in topNav" @mouseover="getName(item)" @mouseout="outHide">{{item}}</span>
         </div>
-        <div class = "detailNav" v-if = "showDetail">
+        <div class = "detailNav" v-if = "showDetail" @mouseover="getName(currentType)" @mouseout="outHide">
             <div>
                 <div v-for = "item in currentDetail" class = "itemDetail">
                     <div>
@@ -20,56 +20,21 @@
 </template>
 
 <script>
+    import {
+        topNavData,
+        navData
+    } from './navData';
     export default {
         name: 'TopNav',
         data () {
             return {
-                topNav : ["小米手机", "红米", "电视", "笔记本", "盒子", "新品", "路由器", "智能硬件", "服务", "社区"],
-                topNavDetail : [
-                    {
-                        name : "小米手机",
-                        urlList : [
-                            {
-                                url : require("../../../assets/mix2s.png"),
-                                price : 3299,
-                                name : "小米MIX 2S",
-                                type : "新品"
-                            },
-                            {
-                                url : require("../../../assets/mix2.png"),
-                                price : 3299,
-                                name : "小米MIX 2S",
-                                type : "新品"
-                            },
-                            {
-                                url : require("../../../assets/5x.jpg"),
-                                price : 3299,
-                                name : "小米MIX 2S",
-                                type : "新品"
-                            },
-                            {
-                                url : require("../../../assets/max2.png"),
-                                price : 3299,
-                                name : "小米MIX 2S",
-                                type : "新品"
-                            },
-                            {
-                                url : require("../../../assets/mi6x.jpg"),
-                                price : 3299,
-                                name : "小米MIX 2S",
-                                type : "新品"
-                            },
-                            {
-                                url : require("../../../assets/note2.png"),
-                                price : 3299,
-                                name : "小米MIX 2S",
-                                type : "新品"
-                            }
-                        ]
-                    }
-                ],
+                topNav : topNavData,
+                topNavDetail : navData,
                 currentType : "小米手机",
-                showDetail : false
+                showDetail : false,
+                // 当鼠标悬浮于顶部导航或者悬浮于具体内容时，count加1，移出时count减1，当count > 0时，说明鼠标离开了顶部导航或者具体内容，可以隐藏具体内容Div
+                count : 0,
+                timeoutId : null
             }
         },
         computed : {
@@ -84,11 +49,18 @@
         },
         methods : {
             getName : function(param){
+                this.count++;
                 this.currentType = param;
                 this.showDetail = true;
             },
             outHide : function(){
-                this.showDetail = false;
+                let _this = this;
+                this.count--;
+                // 函数节流，防止离开事件多次执行。
+                clearTimeout(this.timeoutId);
+                this.timeoutId = setTimeout(function(){
+                    !_this.count ? _this.showDetail = false : ""
+                }, 3000);
             }
         }
     }
@@ -119,6 +91,7 @@
     }
     .simpleNav > span {
         margin-left: 20px;
+        cursor: pointer;
     }
     .detailNav{
         position: absolute;
@@ -143,6 +116,7 @@
         width: 160px;
         height: 110px;
         margin-top: 10px;
+        cursor: pointer;
     }
     .itemDetail > div{
         height: 18px;
