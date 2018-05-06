@@ -1,6 +1,7 @@
 <template>
     <div class = "home">
         <Header></Header>
+        <TopNav></TopNav>
         <Swipper :swipper-info = "bgImg"></Swipper>
     </div>
 </template>
@@ -8,6 +9,7 @@
 <script>
     // 头部组件
     import Header from './header/Header'
+    import TopNav from './header/TopNav'
     // 轮播图组件
     import Swipper from '../base/Swipper'
     export default {
@@ -28,6 +30,7 @@
         },
         components : {
             Header,
+            TopNav,
             Swipper
         }
     }

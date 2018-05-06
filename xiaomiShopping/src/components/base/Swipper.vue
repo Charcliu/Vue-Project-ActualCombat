@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class = "swipper">
+        <LeftTree></LeftTree>
         <div v-for = "(item, index) in urlList" v-if = "index == currentIndex" class = "imgContent">
             <img :src = "item"/>
             <span class = "left" @click = "switchImg(0)"></span>
@@ -9,6 +10,7 @@
 </template>
 
 <script>
+    import LeftTree from '../homePage/leftTree/LeftTree'
     export default {
         name: 'Swipper',
         props : ['swipperInfo'],
@@ -42,6 +44,9 @@
                     this.currentIndex > 0 ? this.currentIndex-- : this.currentIndex = this.urlSize - 1;
                 }
             }
+        },
+        components : {
+            LeftTree
         }
     }
 </script>
@@ -50,7 +55,6 @@
 <style scoped>
     .imgContent{
         width: 1226px;
-        height: 420px;
         margin: auto;
     }
     .left{
@@ -59,7 +63,7 @@
         height: 68px;
         display: inline-block;
         position: absolute;
-        left: 400px;
+        left: 234px;
         top: 200px;
         background-position: 82px;
         cursor: pointer;
@@ -70,7 +74,7 @@
         height: 68px;
         display: inline-block;
         position: absolute;
-        right: 155px;
+        right: 0px;
         top: 200px;
         background-position: 41px;
         cursor: pointer;
@@ -80,5 +84,10 @@
     }
     .right:hover{
         background-position: -41px;
+    }
+    .swipper{
+        width: 1226px;
+        margin: auto;
+        position: relative;
     }
 </style>
