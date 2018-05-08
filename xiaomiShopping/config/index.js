@@ -10,7 +10,14 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    // 配置跨域代理
+    proxyTable: {
+        '/home': {       // 代理名称，所有url以/home开头的都会被代理转发
+            target: 'http://192.168.31.245:8081/',  // 代理转发到的服务器，也就是后台服务器 
+            changeOrigin: true,                     // 开启代理  
+            pathRewrite: {'^/home': '/home'}        // 前面对url进行正则表达式匹配，然后替换url匹配项为后面的内容转发到后台 
+        }  
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

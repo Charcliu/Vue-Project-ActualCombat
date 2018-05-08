@@ -11,6 +11,18 @@
             return {
                 msg: 'Not Found Page'
             }
+        },
+        // 测试axios和proxyTable代理转发
+        mounted : function(){
+            this.$http({
+                method: 'get',
+                url: '/home/helloSpring',
+            }).then(function(res){
+                console.log(res)
+            })
+            .catch(function(err){
+                console.log(err)
+            })
         }
     }
 </script>
