@@ -1,40 +1,43 @@
 <template>
-    <div class = "home">
-        <Header></Header>
-        <TopNav></TopNav>
-        <Swipper :swipper-info = "bgImg"></Swipper>
-    </div>
+<div class="home">
+  <Header></Header>
+  <TopNav></TopNav>
+  <Swipper :swipper-info="bgImg"></Swipper>
+  <Footer></Footer>
+</div>
 </template>
 
 <script>
-    // 头部组件
-    import Header from './header/Header'
-    import TopNav from './header/TopNav'
-    // 轮播图组件
-    import Swipper from '../base/Swipper'
-    export default {
-        name: 'Home',
-        data () {
-            return {
-                bgImg : {
-                    url : [
-                        require("../../assets/xmad.jpg"),
-                        require("../../assets/card2.jpg"),
-                        require("../../assets/card3.jpg"),
-                        require("../../assets/card4.jpg")
-                    ],
-                    startIndex : 0,
-                    autoplay : true,
-                    interval : 6000
-                }
-            }
-        },
-        components : {
-            Header,
-            TopNav,
-            Swipper
-        }
+// 头部组件
+import Header from './header/Header'
+import TopNav from './header/TopNav'
+import Footer from './footer/Footer'
+// 轮播图组件
+import Swipper from '../base/Swipper'
+export default {
+  name: 'Home',
+  data() {
+    return {
+      bgImg: {
+        url: [
+          require("../../assets/xmad.jpg"),
+          require("../../assets/card2.jpg"),
+          require("../../assets/card3.jpg"),
+          require("../../assets/card4.jpg")
+        ],
+        startIndex: 0,
+        autoplay: true,
+        interval: 6000
+      }
     }
+  },
+  components: {
+    Header,
+    TopNav,
+    Swipper,
+    Footer
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
