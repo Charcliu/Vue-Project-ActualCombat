@@ -7,7 +7,7 @@ import store from './store/index'; //引入store
 
 // 引入axios
 import axios from 'axios'
-Vue.prototype.$http= axios
+Vue.prototype.$http = axios
 
 // 引入Vue 2.0 的桌面端组件库
 import ElementUI from 'element-ui';
@@ -18,9 +18,11 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-    el: '#app',
-    router,
-    store, //挂载store
-    components: { App },
-    template: '<App/>'
+  el: '#app',
+  router,
+  store, //挂载store
+  components: {
+    App
+  },
+  template: '<App/>'
 })
