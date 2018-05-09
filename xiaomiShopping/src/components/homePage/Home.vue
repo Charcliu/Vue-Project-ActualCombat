@@ -4,6 +4,7 @@
   <TopNav></TopNav>
   <Swipper :swipper-info="bgImg"></Swipper>
   <Footer></Footer>
+  <Purchase></Purchase>
 </div>
 </template>
 
@@ -12,6 +13,7 @@
 import Header from './header/Header'
 import TopNav from './header/TopNav'
 import Footer from './footer/Footer'
+import Purchase from './flashPurchase/Purchase'
 // 轮播图组件
 import Swipper from '../base/Swipper'
 export default {
@@ -35,7 +37,8 @@ export default {
     Header,
     TopNav,
     Swipper,
-    Footer
+    Footer,
+    Purchase
   }
 }
 </script>
