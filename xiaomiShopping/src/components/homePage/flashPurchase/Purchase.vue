@@ -3,25 +3,57 @@
   <div class="head">
     <div>小米闪购</div>
     <div>
-      <span><</span>
-      <span>></span>
+      <span :class="{ active: currentPage > 0}" @click="delCurrentPage"><</span>
+      <span :class="{ active: currentPage < classifyData.length - 1}" @click="addCurrentPage">></span>
     </div>
   </div>
-  <PurchaseFoot></PurchaseFoot>
+  <div class="PurchaseFoot">
+    <PurchaseFootLeft></PurchaseFootLeft>
+    <PurchaseFootRight :show-data="showData"></PurchaseFootRight>
+  </div>
 </div>
 </template>
 
 <script>
-import PurchaseFoot from './PurchaseFoot'
+import PurchaseFootLeft from './PurchaseFootLeft'
+import PurchaseFootRight from './PurchaseFootRight'
+import {
+  purchaseRightData
+} from './purchaseRightData'
 export default {
   name: 'Purchase',
   data() {
     return {
-
+      purchaseRightData: purchaseRightData,
+      currentPage: 0
+    }
+  },
+  computed: {
+    classifyData: function() {
+      let result = [];
+      for (let i = 0; i < Math.ceil(this.purchaseRightData.length / 4); i++) {
+        result.push(this.purchaseRightData.slice(i * 4, i * 4 + 4))
+      }
+      return result;
+    },
+    maxChange: function() {
+      return this.classifyData.length - 1;
+    },
+    showData: function() {
+      return this.classifyData[this.currentPage]
+    }
+  },
+  methods: {
+    addCurrentPage: function() {
+      this.currentPage < this.classifyData.length - 1 ? this.currentPage++ : ""
+    },
+    delCurrentPage: function() {
+      this.currentPage > 0 ? this.currentPage-- : ""
     }
   },
   components: {
-    PurchaseFoot
+    PurchaseFootLeft,
+    PurchaseFootRight
   }
 }
 </script>
@@ -55,12 +87,22 @@ export default {
 .head span {
   display: block;
   height: 24px;
+  line-height: 24px;
   width: 36px;
   text-align: center;
   border: 1px solid #e0e0e0;
   margin-top: 16px;
   float: left;
   color: #e0e0e0;
-  color: #b0b0b0;
+  cursor: pointer;
+}
+
+.PurchaseFoot {
+  width: 1226px;
+  margin: auto;
+}
+
+.active {
+  color: #b0b0b0 !important;
 }
 </style>

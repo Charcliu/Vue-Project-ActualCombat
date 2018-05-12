@@ -1,5 +1,5 @@
 <template>
-<div class="PurchaseFoot">
+<div class="PurchaseFootLeft">
   <div class="Countdown">
     <div>{{endTimeHours}} : {{endTimeMinutes}}场</div>
     <div>
@@ -14,13 +14,12 @@
       <span>{{leftTimer.seconds}}</span>
     </div>
   </div>
-  <div></div>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'PurchaseFoot',
+  name: 'PurchaseFootLeft',
   data() {
     return {
       countdownImg: require('../../../assets/purchase/flashPurchase.png'),
@@ -74,9 +73,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.PurchaseFoot {
-  width: 1226px;
-  margin: auto;
+.PurchaseFootLeft {
+  width: 234px;
+  float: left;
 }
 
 .Countdown {
