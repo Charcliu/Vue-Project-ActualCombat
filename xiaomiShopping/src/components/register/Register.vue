@@ -19,7 +19,7 @@
             </div>
             <div>
                 <div class= "registerButton" @click = "registerUser">
-                    <span>注册</span>  
+                    <span>注册</span>
                 </div>
             </div>
             <div class = "login">
@@ -93,7 +93,7 @@ export default {
     },
     methods : {
         ...mapMutations([
-            'addUser' 
+            'addUser'
         ]),
         registerUser : function(){
             let errorType = this.getErrorMsg;
@@ -102,7 +102,7 @@ export default {
                 this.addUser({
                     userName : this.userName,
                     passWord : this.passWord
-                }) 
+                })
                 // elementUI 提示组件
                 this.$message({
                     message: '恭喜你，注册成功！',
@@ -138,7 +138,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang = "scss">
     .register{
         position: fixed;
         left: 0px;
@@ -186,11 +186,15 @@ export default {
         width: 210px;
         height: 25px;
     }
+    
+    /* Test Sass */
+    $register_button_color: #ff6700;
+
     .registerButton{
         width: 300px;
         margin: auto;
         text-align: center;
-        background-color: #ff6700;
+        background-color: $register_button_color;
         border: 1px solid rgba(186,186,186,0.3);
         color: #fff;
         height: 42px;
