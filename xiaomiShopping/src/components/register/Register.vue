@@ -138,7 +138,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang = "scss">
+<style lang = "scss" scoped>
     .register{
         position: fixed;
         left: 0px;
@@ -186,7 +186,7 @@ export default {
         width: 210px;
         height: 25px;
     }
-    
+
     /* Test Sass */
     $register_button_color: #ff6700;
 
